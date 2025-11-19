@@ -1,4 +1,4 @@
-# Milestone 1 - APP_NAME_HERE (Unit 7)
+# Milestone 1 - AI Fitness App (Unit 7)
 
 ## Table of Contents
 
@@ -10,17 +10,16 @@
 
 ### Description
 
-[Description of your app]
+AI Fitness App is a personal mobile coach for students who want structured accountability. It lets users set fitness goals, track workouts and habits, and receive AI-generated check-ins that highlight consistency, celebrate wins, and suggest next steps.
 
 ### App Evaluation
 
-[Evaluation of your app across the following attributes]
-- **Category:**
-- **Mobile:**
-- **Story:**
-- **Market:**
-- **Habit:**
-- **Scope:**
+- **Category:** Health & Fitness / Productivity
+- **Mobile:** Phones are always with students, letting the app deliver at-the-moment nudges (push reminders, widget glance), quick photo logging via camera, and motion data capture without extra hardware.
+- **Story:** “Busy students need a lightweight coach that nudges them toward realistic weekly goals.”
+- **Market:** College students and young professionals who want accountability without a gym membership; can expand to broader wellness market.
+- **Habit:** Daily reminder streaks, weekly AI recaps, and challenge badges to encourage recurrent use.
+- **Scope:** Core experience centers on four screens (onboarding, dashboard, log, insights) that are feasible within the semester while still leaving room for optional integrations.
 
 ## Product Spec
 
@@ -28,45 +27,50 @@
 
 **Required Features**
 
-1. [fill in your required user features here]
-2. ...
-3. ...
+1. Goal onboarding to capture focus areas (strength, cardio, mindfulness) and weekly time commitment.
+2. Daily dashboard with progress ring, streaks, and today’s recommended action.
+3. Workout log form (preset templates + custom notes) with option to attach progress photo.
+4. AI Check-In card that summarizes adherence, highlights missed areas, and suggests adjustments.
+5. Push reminders for scheduled workouts and weekly summary notifications.
 
 **Optional Features**
 
-1. [fill in your optional user features here]
-2. ...
-3. ...
+1. Sync basic metrics from Google Fit / Apple Health for automatic workout detection.
+2. Social challenge mode with a small leaderboard among classmates.
+3. Smart meal suggestions aligned with the current training focus.
 
 ### 2. Screen Archetypes
 
-- [list first screen here]
-  - [list associated required story here]
-  - ...
-- [list second screen here]
-  - [list associated required story here]
-  - ...
+- **Onboarding Flow**
+  - Collect name, fitness goals, preferred workout days/times, notification permissions.
+- **Dashboard**
+  - Shows goal progress, streak count, next task, and quick access to log or AI insight.
+- **Log Session**
+  - Form with exercise type, duration, intensity slider, notes, and photo upload.
+- **AI Insights**
+  - Feed of generated summaries (“You hit 3/4 cardio targets this week; add one more light run tomorrow.”) with actionable buttons.
+- **Profile & Settings**
+  - Manage goals, connected services, reminder schedule, and data export.
 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
-* [fill out your first tab]
-* [fill out your second tab]
-* [fill out your third tab]
+* Dashboard – overview & quick actions
+* Log – start new workout entry / habit check
+* Insights – AI summaries & recommendations
+* Profile – settings, goals, integrations
 
 **Flow Navigation** (Screen to Screen)
 
-- [list first screen here]
-  - [list screen navigation here]
-  - ...
-- [list second screen here]
-  - [list screen navigation here]
-  - ...
+- Launch → Onboarding → Dashboard
+- Dashboard → Log Session → Confirmation → Dashboard
+- Dashboard → Insights → Detailed Insight → Suggested action (e.g., schedule workout)
+- Profile → Edit Goals → Confirmation → Dashboard
 
 ## Wireframes
 
-[Add picture of your hand sketched wireframes in this section] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+[Planned wireframes: onboarding flow, dashboard, log session, AI insight modal. Placeholder until sketches are uploaded.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
 
 <br>
 
