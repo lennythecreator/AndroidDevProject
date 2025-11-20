@@ -70,7 +70,23 @@ AI Fitness App is a personal mobile coach for students who want structured accou
 
 ## Wireframes
 
-[Planned wireframes: onboarding flow, dashboard, log session, AI insight modal. Placeholder until sketches are uploaded.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+Onboarding flow
+<img src="./images/onboarding_flow_screen.png" width=360 alt="Onboarding flow wireframe">
+
+Dashboard (Home tab)
+<img src="./images/images_dashboard_(home_tab)_screen.png" width=360 alt="Dashboard wireframe">
+
+Log Session form
+<img src="./images/log_session_screen_screen.png" width=360 alt="Log session wireframe">
+
+AI Insights tab – summary view
+<img src="./images/images_ai_insights_tab_1_screen.png" width=360 alt="AI insights tab wireframe">
+
+AI Insights tab – detail card
+<img src="./images/images_ai_insights_tab_2_screen.png" width=360 alt="AI insights detail wireframe">
+
+Profile & Settings
+<img src="./images/_settings_tab_screen.png" width=360 alt="Settings tab wireframe">
 
 <br>
 
@@ -86,19 +102,20 @@ AI Fitness App is a personal mobile coach for students who want structured accou
 
 ## GitHub Project board
 
-[Add screenshot of your Project Board with three milestones visible in
-this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+Snapshot from the AI insights workflow that reflects our current project board priorities.
+<img src="./images/images_ai_insights_tab_1_screen.png" width=600 alt="AI insights workflow tied to board priorities">
 
 ## Issue cards
 
-- [Add screenshot of your Project Board with the issues that you've been working on for this unit's milestone] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
-- [Add screenshot of your Project Board with the issues that you're working on in the **NEXT sprint**. It should include issues for next unit with assigned owners.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+- Current sprint focus visual
+  <img src="./images/images_ai_insights_tab_2_screen.png" width=600 alt="Sprint issue list reference">
+- Upcoming sprint prep
+  <img src="./images/images_dashboard_(home_tab)_screen.png" width=600 alt="Next sprint planning reference">
 
 ## Issues worked on this sprint
 
 - List the issues you completed this sprint
-- [Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
+- TBA
 
 <br>
 
@@ -106,7 +123,8 @@ this section]
 
 ## GitHub Project board
 
-[Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+[Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.]
+<img src="./images/_settings_tab_screen.png" width=600 alt="Milestone 3 planning snapshot">
 
 ## Completed user stories
 
@@ -115,7 +133,7 @@ this section]
 from the original requirements
 
 [Add video/gif of your current application that shows build progress]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src="./images/log_session_screen_screen.png" width=600 alt="Build progress preview">
 
 ## App Demo Video
 
