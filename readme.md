@@ -1,4 +1,4 @@
-# Milestone 1 - AI Fitness App (Unit 7)
+# Milestone 1 - GymPal[Final working name](Unit 7)
 
 ## Table of Contents
 
@@ -10,7 +10,7 @@
 
 ### Description
 
-AI Fitness App is a personal mobile coach for students who want structured accountability. It lets users set fitness goals, track workouts and habits, and receive AI-generated check-ins that highlight consistency, celebrate wins, and suggest next steps.
+GymPal App is a personal mobile coach for students who want structured accountability. It lets users set fitness goals, track workouts and habits, and receive AI-generated check-ins that highlight consistency, celebrate wins, and suggest next steps.
 
 ### App Evaluation
 
