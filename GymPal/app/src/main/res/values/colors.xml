@@ -3,11 +3,12 @@
     <!-- Backgrounds -->
     <color name="colorBackgroundDark">#050B16</color>
     <color name="colorCardBackground">#0C1726</color>
-
+    <!-- Decide on the card bg color, can't use dark bg on dark card bg -->
     <!-- Text -->
     <color name="colorTextPrimary">#FFFFFF</color>
     <color name="colorTextSecondary">#A6B3C5</color>
     <color name="colorPlaceholderText">#5C6775</color>
+    <color name="colorTextBlack">#000000</color>
 
     <!-- Accent / Buttons -->
     <color name="colorAccent">#00C2FF</color>

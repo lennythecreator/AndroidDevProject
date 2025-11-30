@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.gympal"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.gympal"

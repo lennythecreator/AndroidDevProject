@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">GymPal</string>
+    <string name="averages">Averages</string>
+    <string name="avg_workouts_0">Avg workouts: 0</string>
+    <string name="avg_sets_0">Avg sets: 0</string>
+    <string name="avg_reps_0">Avg reps: 0</string>
+    <string name="avg_duration_0_min">Avg duration: 0 min</string>
+    <string name="current_goals">Current goals</string>
+    <string name="no_goals_set_yet">No goals set yet</string>
+    <string name="get_ai_insights">Get AI insights</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="weekly_averages">Weekly averages</string>
+    <string name="based_on_your_recent_workouts">Based on your recent workouts</string>
+    <string name="workouts">Workouts</string>
+    <string name="_0">0</string>
+    <string name="sets">Sets</string>
+    <string name="reps">Reps</string>
+    <string name="duration">Duration</string>
+    <string name="_0_min">0 min</string>
+    <string name="no_goals_yet">No goals yet</string>
+    <string name="hi_user">Hi, User</string>
 </resources>
