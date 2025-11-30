@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Backgrounds -->
+    <color name="colorBackgroundDark">#050B16</color>
+    <color name="colorCardBackground">#0C1726</color>
+
+    <!-- Text -->
+    <color name="colorTextPrimary">#FFFFFF</color>
+    <color name="colorTextSecondary">#A6B3C5</color>
+    <color name="colorPlaceholderText">#5C6775</color>
+
+    <!-- Accent / Buttons -->
+    <color name="colorAccent">#00C2FF</color>
+    <color name="colorAccentPressed">#00A0D1</color>
+
+    <!-- Misc -->
+    <color name="colorStepIndicator">#00C2FF</color>
 </resources>
