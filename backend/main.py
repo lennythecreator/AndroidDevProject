@@ -1,7 +1,7 @@
+from models import *
 from typing import Union
 
 from fastapi import FastAPI
-
 app = FastAPI()
 
 
@@ -10,21 +10,24 @@ def read_root():
     return {"Hello": "World"}
 
 @app.post("/login")
-def login(login_request: LoginRequest):
-    return Auth_Controller.login(login_request)
+async def login(login_request: LoginRequest):
+    return await Auth_Controller.login(login_request)
 
 @app.post("/onboarding")
-def onboard(onboarding_request: OnboardingRequest):
-    return User_Controller.onboard(onboarding_request)
+async def onboard(onboarding_request: OnboardingRequest):
+    return await User_Controller.onboard(onboarding_request)
 
 @app.get("/users/{id}/averages")
-def user_averages(id: int):
-    return User_Controller.get_user_averages(id)
+await def user_averages(id: int):
+    return await User_Controller.get_goal_averages(id)
 
 @app.get("/users/{id}/goals/current")
-def user_current_goals(id: int):
-    return User_Controller.get_current_goals(id)
+async def user_current_goals(id: int):
+    return await User_Controller.get_current_goals(id)
 
+@app.get("/users/{id}/insights")
+async def user_insights(id: int):
+    return await User_Controller.get_insights(id)
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
