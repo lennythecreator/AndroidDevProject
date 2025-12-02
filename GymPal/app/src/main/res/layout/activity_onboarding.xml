@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundDark"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/onboardingRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tvOnboardingTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome_to_gympal"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorTextPrimary" />
+
+        <TextView
+            android:id="@+id/tvOnboardingSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tell us a bit about you so we can personalize your dashboard."
+            android:textSize="14sp"
+            android:textColor="@color/colorTextSecondary"
+            android:layout_marginTop="4dp" />
+
+        <!-- Name -->
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:textColor="@color/colorTextPrimary"
+            android:textColorHint="@color/colorPlaceholderText"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/colorAccent" />
+
+        <!-- Age -->
+        <EditText
+            android:id="@+id/etAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Age"
+            android:inputType="number"
+            android:textColor="@color/colorTextPrimary"
+            android:textColorHint="@color/colorPlaceholderText"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/colorAccent" />
+
+        <!-- Weight -->
+        <EditText
+            android:id="@+id/etWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Weight (kg)"
+            android:inputType="numberDecimal"
+            android:textColor="@color/colorTextPrimary"
+            android:textColorHint="@color/colorPlaceholderText"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/colorAccent" />
+
+        <!-- Height -->
+        <EditText
+            android:id="@+id/etHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Height (cm)"
+            android:inputType="numberDecimal"
+            android:textColor="@color/colorTextPrimary"
+            android:textColorHint="@color/colorPlaceholderText"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/colorAccent" />
+
+        <!-- Activeness -->
+        <EditText
+            android:id="@+id/etActiveness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Activeness (e.g., Low, Medium, High)"
+            android:textColor="@color/colorTextPrimary"
+            android:textColorHint="@color/colorPlaceholderText"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/colorAccent" />
+
+        <!-- Fitness goals -->
+        <EditText
+            android:id="@+id/etFitnessGoals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fitness goals (e.g., build muscle, lose weight)"
+            android:textColor="@color/colorTextPrimary"
+            android:textColorHint="@color/colorPlaceholderText"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/colorAccent"
+            android:minLines="2" />
+
+        <!-- Spacer -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Continue button -->
+        <Button
+            android:id="@+id/btnContinue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continue"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:layout_marginTop="24dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="@color/colorTextPrimary" />
+
+    </LinearLayout>
+</ScrollView>

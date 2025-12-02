@@ -1,5 +1,6 @@
 package com.example.gympal
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.*
@@ -42,6 +43,7 @@ class WorkoutFormActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun addExerciseView() {
         val inflater = LayoutInflater.from(this)
         val exerciseView = inflater.inflate(
