@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundDark"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/signUpRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/tvSignUpTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_your_account"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorTextPrimary" />
+
+        <TextView
+            android:id="@+id/tvSignUpSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/track_your_workouts_and_goals_in_one_place"
+            android:textSize="14sp"
+            android:textColor="@color/colorTextSecondary"
+            android:layout_marginTop="6dp" />
+
+        <!-- Email -->
+        <EditText
+            android:id="@+id/etSignUpEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/colorTextPrimary"
+            android:textColorHint="@color/colorPlaceholderText"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/colorAccent" />
+
+        <!-- Password -->
+        <EditText
+            android:id="@+id/etSignUpPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:textColor="@color/colorTextPrimary"
+            android:textColorHint="@color/colorPlaceholderText"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/colorAccent" />
+
+        <!-- Confirm password -->
+        <EditText
+            android:id="@+id/etSignUpConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/confirm_password"
+            android:inputType="textPassword"
+            android:textColor="@color/colorTextPrimary"
+            android:textColorHint="@color/colorPlaceholderText"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/colorAccent" />
+
+        <!-- Spacer -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Sign up button -->
+        <Button
+            android:id="@+id/btnSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_up"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:layout_marginTop="24dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="@color/colorTextPrimary" />
+
+        <!-- Back to login -->
+        <TextView
+            android:id="@+id/tvGoToLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/already_have_an_account_log_in"
+            android:textSize="14sp"
+            android:textColor="@color/colorAccent"
+            android:layout_marginTop="12dp" />
+
+    </LinearLayout>
+</ScrollView>

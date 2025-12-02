@@ -20,4 +20,15 @@
     <string name="no_goals_yet">No goals yet</string>
     <string name="hi_user">Hi, User</string>
     <string name="welcome_to_gympal">Welcome to GymPal</string>
+    <string name="no_account_sign_up">No account? Sign up</string>
+    <string name="welcome_back">Welcome back</string>
+    <string name="log_in_to_see_your_workouts_and_goals">Log in to see your workouts and goals.</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log in</string>
+    <string name="already_have_an_account_log_in">Already have an account? Log in</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="create_your_account">Create your account</string>
+    <string name="track_your_workouts_and_goals_in_one_place">Track your workouts and goals in one place.</string>
+    <string name="sign_up">Sign up</string>
 </resources>
