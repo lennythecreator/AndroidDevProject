@@ -8,6 +8,7 @@
     <color name="colorTextPrimary">#FFFFFF</color>
     <color name="colorTextSecondary">#A6B3C5</color>
     <color name="colorPlaceholderText">#5C6775</color>
+    <color name="colorTextBlack">#000000</color>
 
     <!-- Accent / Buttons -->
     <color name="colorAccent">#00C2FF</color>
