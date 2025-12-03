@@ -9,7 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.example.gympal.network.ApiClient
+import com.example.gympal.network.SessionManager
+import kotlinx.coroutines.launch
+import org.json.JSONObject
 
 class HomeFragment : Fragment() {
 
@@ -23,6 +29,7 @@ class HomeFragment : Fragment() {
     private lateinit var tvAvgDuration: TextView
     private lateinit var tvCurrentGoals: TextView
     private lateinit var btnAiInsights: Button
+    private lateinit var btnAddWorkout: Button
     private lateinit var btnLogout: Button
 
     override fun onCreateView(
@@ -77,29 +84,63 @@ class HomeFragment : Fragment() {
         tvAvgDuration = root.findViewById(R.id.tvAvgDuration)
         tvCurrentGoals = root.findViewById(R.id.tvCurrentGoals)
         btnAiInsights = root.findViewById(R.id.btnAiInsights)
+        btnAddWorkout = root.findViewById(R.id.btnAddWorkout)
         btnLogout = root.findViewById(R.id.btnLogout)
-
-        val prefs = requireContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
-        val name = prefs.getString("name", "user") ?: "user"
-        tvGreeting.text = "Hi, $name"
-
-        // You can plug your real data here later
-        tvAvgWorkouts.text = "0"
-        tvAvgSets.text = "0"
-        tvAvgReps.text = "0"
-        tvAvgDuration.text = "0 min"
-        tvCurrentGoals.text = getString(R.string.no_goals_yet)
 
         btnAiInsights.setOnClickListener {
             startActivity(Intent(requireContext(), AIInsightsActivity::class.java))
         }
 
+        btnAddWorkout.setOnClickListener {
+            startActivity(Intent(requireContext(), WorkoutFormActivity::class.java))
+        }
+
         btnLogout.setOnClickListener {
-            val authPrefs = requireContext().getSharedPreferences("auth_prefs", Context.MODE_PRIVATE)
-            val userPrefs = requireContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
-            authPrefs.edit().clear().apply()
-            userPrefs.edit().clear().apply()
+            SessionManager.clear(requireContext())
             showLoggedOut()
+        }
+
+        fetchDashboardData()
+    }
+
+    private fun fetchDashboardData() {
+        val userId = SessionManager.userId(requireContext())
+        if (userId <= 0) {
+            showLoggedOut()
+            return
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val profile = ApiClient.get("/users/$userId/profile")
+                val averages = ApiClient.get("/users/$userId/averages")
+                val goals = ApiClient.get("/users/$userId/goals/current")
+                bindDashboard(profile, averages, goals)
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "Failed to load dashboard", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun bindDashboard(profile: JSONObject, averages: JSONObject, goals: JSONObject) {
+        val name = profile.optString("name", "user")
+        tvGreeting.text = "Hi, $name"
+        tvAvgWorkouts.text = averages.optDouble("workouts_per_week", 0.0).toString()
+        tvAvgSets.text = averages.optDouble("avg_sets", 0.0).toString()
+        tvAvgReps.text = averages.optDouble("avg_reps", 0.0).toString()
+        val duration = averages.optDouble("avg_duration_minutes", 0.0)
+        tvAvgDuration.text = "${duration} min"
+
+        val goalsList = goals.optJSONArray("goals")
+        if (goalsList != null && goalsList.length() > 0) {
+            val builder = StringBuilder()
+            for (i in 0 until goalsList.length()) {
+                builder.append("\u2022 ").append(goalsList.optString(i)).append("\n\n")
+            }
+            tvCurrentGoals.text = builder.toString().trim()
+        } else {
+            tvCurrentGoals.text = getString(R.string.no_goals_yet)
         }
     }
 }
