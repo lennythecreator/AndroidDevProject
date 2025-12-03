@@ -36,4 +36,5 @@
     <string name="profile">Profile</string>
     <string name="log_in_or_sign_up_to_start_tracking_your_workouts">Log in or sign up to start tracking your workouts.</string>
     <string name="workout_log">Workout log</string>
+    <string name="log_out">Log out</string>
 </resources>
