@@ -60,8 +60,8 @@ class OnboardingActivity : AppCompatActivity() {
 
         saveUserProfile(profile)
 
-        // After onboarding, go to your real home screen
-        val intent = Intent(this, DashboardActivity::class.java)
+        // After onboarding, go to the main nav-hosted experience (keeps bottom nav visible)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }

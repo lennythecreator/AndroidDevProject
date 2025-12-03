@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,43 +7,320 @@
     android:background="@color/colorBackgroundDark"
     tools:context=".HomeFragment">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/homeHeroCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        app:cardBackgroundColor="@color/colorCardBackground"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <!-- Logged out state: welcome + login / signup -->
+    <LinearLayout
+        android:id="@+id/layoutLoggedOut"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:background="@color/colorBackgroundDark">
+
+        <TextView
+            android:id="@+id/tvWelcomeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome_to_gympal"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorTextPrimary" />
+
+        <TextView
+            android:id="@+id/tvWelcomeSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/log_in_or_sign_up_to_start_tracking_your_workouts"
+            android:textSize="14sp"
+            android:textColor="@color/colorTextSecondary"
+            android:layout_marginTop="8dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnGoToLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_in"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="@color/colorTextPrimary" />
+
+        <Button
+            android:id="@+id/btnGoToSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_up"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:layout_marginTop="12dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="@color/colorTextPrimary" />
+    </LinearLayout>
+
+    <!-- Logged in state: full dashboard -->
+    <ScrollView
+        android:id="@+id/layoutLoggedIn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundDark"
+        android:fillViewport="true"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="16dp">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/homeGreeting"
-                style="@style/TextAppearance.Material3.TitleLarge"
+            <TextView
+                android:id="@+id/tvGreeting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Welcome to GymPal!"
+                android:text="@string/hi_user"
+                android:textSize="20sp"
                 android:textColor="@color/colorTextPrimary" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/homeSubcopy"
-                style="@style/TextAppearance.Material3.BodyMedium"
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorTextPrimary"
+                android:layout_marginTop="4dp" />
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Track workouts, get AI coaching, and keep your streak alive."
-                android:textColor="@color/colorTextSecondary" />
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="18dp"
+                app:cardBackgroundColor="@color/colorCardBackground"
+                app:cardElevation="6dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/weekly_averages"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorTextPrimary"/>
+
+                    <TextView
+                        android:id="@+id/tvAveragesSubtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/based_on_your_recent_workouts"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorTextPrimary"
+                        android:layout_marginTop="2dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="12dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/workouts"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorTextSecondary" />
+
+                        <TextView
+                            android:id="@+id/tvAvgWorkouts"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_0"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorTextPrimary" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="8dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/sets"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorTextSecondary" />
+
+                        <TextView
+                            android:id="@+id/tvAvgSets"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_0"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorTextPrimary" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="8dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/reps"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorTextSecondary" />
+
+                        <TextView
+                            android:id="@+id/tvAvgReps"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_0"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorTextPrimary" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="8dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/duration"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorTextSecondary" />
+
+                        <TextView
+                            android:id="@+id/tvAvgDuration"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_0_min"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorTextPrimary" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/colorCardBackground"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/current_goals"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorTextPrimary" />
+
+                    <TextView
+                        android:id="@+id/tvCurrentGoals"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no_goals_yet"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorTextSecondary"
+                        android:layout_marginTop="8dp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btnAiInsights"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/get_ai_insights"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:layout_marginTop="24dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:backgroundTint="@color/colorAccent"
+                android:textColor="@color/colorTextPrimary" />
+
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/log_out"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:layout_marginTop="12dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:backgroundTint="@color/colorCardBackground"
+                android:textColor="@color/colorTextPrimary" />
+
         </LinearLayout>
+    </ScrollView>
 
-    </com.google.android.material.card.MaterialCardView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

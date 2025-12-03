@@ -5,11 +5,13 @@
       <SelectionState runConfigName="DashboardActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="OnboardingActivity">
+      <SelectionState runConfigName="AIInsightsActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="MainActivity">
-      <SelectionState runConfigName="SignUpActivity">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="OnboardingActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
