@@ -31,4 +31,9 @@
     <string name="create_your_account">Create your account</string>
     <string name="track_your_workouts_and_goals_in_one_place">Track your workouts and goals in one place.</string>
     <string name="sign_up">Sign up</string>
+    <string name="reminder_scheduled">Reminder scheduled for %1$s:%2$s every day.</string>
+    <string name="reminder_cancelled_status">Reminder is turned off.</string>
+    <string name="reminder_scheduled_toast">Daily reminder scheduled.</string>
+    <string name="reminder_cancelled_toast">Reminder cancelled.</string>
+    <string name="default_reminder_message">GymPal reminder: Time to crush your workout!</string>
 </resources>

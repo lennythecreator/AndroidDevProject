@@ -5,16 +5,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackgroundDark"
     tools:context=".ProfileFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/profileCard"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Profile"
-        android:textAppearance="?attr/textAppearanceHeadlineMedium"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="24dp"
+        app:cardBackgroundColor="@color/colorCardBackground"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/profileTitle"
+                style="@style/TextAppearance.Material3.TitleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textColor="@color/colorTextPrimary" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/profileName"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Name"
+                android:textColor="@color/colorTextSecondary" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/profileNameValue"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="Jordan Lee"
+                android:textColor="@color/colorTextPrimary" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/profileAge"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Age"
+                android:textColor="@color/colorTextSecondary" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/profileAgeValue"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="22"
+                android:textColor="@color/colorTextPrimary" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/profileWeight"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Weight"
+                android:textColor="@color/colorTextSecondary" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/profileWeightValue"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="175 lbs"
+                android:textColor="@color/colorTextPrimary" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/profileConsistency"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Consistency Score"
+                android:textColor="@color/colorTextSecondary" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/profileConsistencyValue"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="82%"
+                android:textColor="@color/colorAccent" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
