@@ -5,8 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.gympal.model.Exercise
 import com.example.gympal.model.WorkoutSession
+import com.example.gympal.network.ApiClient
+import com.example.gympal.network.SessionManager
+import kotlinx.coroutines.launch
+import org.json.JSONArray
+import org.json.JSONObject
 
 class WorkoutFormActivity : AppCompatActivity() {
 
@@ -33,13 +39,52 @@ class WorkoutFormActivity : AppCompatActivity() {
 
         btnSaveWorkout.setOnClickListener {
             val session = collectWorkoutSession()
+            val userId = SessionManager.userId(this)
+            if (userId <= 0) {
+                Toast.makeText(this, "Please log in again", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (session.exercises.isEmpty()) {
+                Toast.makeText(this, "Add at least one exercise", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
-            // For now just show a toast. Later you can send this to backend or back to Dashboard.
-            Toast.makeText(
-                this,
-                "Saved ${session.exercises.size} exercises for ${session.day.ifBlank { "unknown day" }}",
-                Toast.LENGTH_SHORT
-            ).show()
+            btnSaveWorkout.isEnabled = false
+            lifecycleScope.launch {
+                try {
+                    val exercisesArray = JSONArray()
+                    session.exercises.forEach { ex ->
+                        exercisesArray.put(
+                            JSONObject()
+                                .put("name", ex.name)
+                                .put("reps", ex.reps)
+                                .put("sets", ex.sets)
+                                .put("duration", ex.duration)
+                        )
+                    }
+
+                    val payload = JSONObject()
+                        .put("user_id", userId)
+                        .put("day", session.day.ifBlank { "Unknown" })
+                        .put("exercises", exercisesArray)
+
+                    ApiClient.post("/workouts", payload)
+                    Toast.makeText(
+                        this@WorkoutFormActivity,
+                        "Workout saved",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    finish()
+                } catch (e: Exception) {
+                    Toast.makeText(
+                        this@WorkoutFormActivity,
+                        "Failed to save workout",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } finally {
+                    btnSaveWorkout.isEnabled = true
+                }
+            }
         }
     }
 
