@@ -2,14 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/homeFragment"
-        android:icon="@android:drawable/ic_menu_rotate"
-        android:title="@string/home" />
+        android:icon="@drawable/ic_nav_home"
+        android:title="Home" />
     <item
         android:id="@+id/insightsFragment"
-        android:icon="@android:drawable/ic_menu_view"
-        android:title="@string/insights" />
+        android:icon="@drawable/ic_nav_insights"
+        android:title="Insights" />
+    <item
+        android:id="@+id/remindersFragment"
+        android:icon="@drawable/ic_nav_reminders"
+        android:title="Reminders" />
     <item
         android:id="@+id/profileFragment"
-        android:icon="@android:drawable/ic_menu_my_calendar"
-        android:title="@string/profile" />
+        android:icon="@drawable/ic_nav_profile"
+        android:title="Profile" />
 </menu>

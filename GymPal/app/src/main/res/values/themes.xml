@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.GymPal" parent="Base.Theme.GymPal" />
+
+    <style name="Widget.TimePicker.Dark" parent="android:Widget.Material.TimePicker">
+        <item name="android:textColorPrimary">@color/colorTextPrimary</item>
+        <item name="android:textColorSecondary">@color/colorTextSecondary</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
+    </style>
 </resources>
