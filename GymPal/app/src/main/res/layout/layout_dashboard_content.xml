@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvGreeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hi, user" />
+
+        <TextView
+            android:id="@+id/tvAvgWorkouts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/tvAvgSets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/tvAvgReps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/tvAvgDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 min" />
+
+        <TextView
+            android:id="@+id/tvCurrentGoals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No goals yet" />
+
+        <Button
+            android:id="@+id/btnAiInsights"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get AI insights" />
+
+    </LinearLayout>
+</ScrollView>

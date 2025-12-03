@@ -31,4 +31,9 @@
     <string name="create_your_account">Create your account</string>
     <string name="track_your_workouts_and_goals_in_one_place">Track your workouts and goals in one place.</string>
     <string name="sign_up">Sign up</string>
+    <string name="home">Home</string>
+    <string name="insights">Insights</string>
+    <string name="profile">Profile</string>
+    <string name="log_in_or_sign_up_to_start_tracking_your_workouts">Log in or sign up to start tracking your workouts.</string>
+    <string name="workout_log">Workout log</string>
 </resources>

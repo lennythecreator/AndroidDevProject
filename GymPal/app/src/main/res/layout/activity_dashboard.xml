@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundDark"
     android:fillViewport="true">
-
+    <include layout="@layout/layout_dashboard_content" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
