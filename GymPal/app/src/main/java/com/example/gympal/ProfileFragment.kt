@@ -1,9 +1,11 @@
 package com.example.gympal
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -22,6 +24,7 @@ class ProfileFragment : Fragment() {
     private lateinit var tvActiveness: TextView
     private lateinit var tvGoals: TextView
     private lateinit var tvConsistency: TextView
+    private lateinit var btnLogout: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,9 +43,15 @@ class ProfileFragment : Fragment() {
         tvActiveness = view.findViewById(R.id.profileActivenessValue)
         tvGoals = view.findViewById(R.id.profileGoalsValue)
         tvConsistency = view.findViewById(R.id.profileConsistencyValue)
+        btnLogout = view.findViewById(R.id.btnLogoutProfile)
 
         bindLocalProfile()
         fetchProfile()
+        btnLogout.setOnClickListener {
+            SessionManager.clear(requireContext())
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            requireActivity().finish()
+        }
     }
 
     private fun bindLocalProfile() {

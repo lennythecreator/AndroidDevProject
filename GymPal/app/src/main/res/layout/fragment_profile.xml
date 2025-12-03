@@ -153,6 +153,19 @@
                 android:text="82%"
                 android:textColor="@color/colorAccent" />
 
+            <Button
+                android:id="@+id/btnLogoutProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/log_out"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:backgroundTint="@color/colorCardBackground"
+                android:textColor="@color/colorTextPrimary" />
+
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>

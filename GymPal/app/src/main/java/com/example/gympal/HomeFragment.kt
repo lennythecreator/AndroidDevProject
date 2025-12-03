@@ -28,9 +28,7 @@ class HomeFragment : Fragment() {
     private lateinit var tvAvgReps: TextView
     private lateinit var tvAvgDuration: TextView
     private lateinit var tvCurrentGoals: TextView
-    private lateinit var btnAiInsights: Button
     private lateinit var btnAddWorkout: Button
-    private lateinit var btnLogout: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -83,21 +81,10 @@ class HomeFragment : Fragment() {
         tvAvgReps = root.findViewById(R.id.tvAvgReps)
         tvAvgDuration = root.findViewById(R.id.tvAvgDuration)
         tvCurrentGoals = root.findViewById(R.id.tvCurrentGoals)
-        btnAiInsights = root.findViewById(R.id.btnAiInsights)
         btnAddWorkout = root.findViewById(R.id.btnAddWorkout)
-        btnLogout = root.findViewById(R.id.btnLogout)
-
-        btnAiInsights.setOnClickListener {
-            startActivity(Intent(requireContext(), AIInsightsActivity::class.java))
-        }
 
         btnAddWorkout.setOnClickListener {
             startActivity(Intent(requireContext(), WorkoutFormActivity::class.java))
-        }
-
-        btnLogout.setOnClickListener {
-            SessionManager.clear(requireContext())
-            showLoggedOut()
         }
 
         fetchDashboardData()
