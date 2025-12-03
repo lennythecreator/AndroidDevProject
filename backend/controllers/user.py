@@ -187,45 +187,32 @@ class User_Controller:
 
     @staticmethod
     async def get_insights(user_id: int) -> InsightResponse:
+        # Pull real user + weekly averages from DB, but return a mocked insight payload.
         profile = await User_Controller.get_profile(user_id)
         averages = await User_Controller.get_goal_averages(user_id)
-
-        intensity_score = round(
-            min(
-                10.0,
-                (averages.avg_sets / 12.0 * 4)
-                + (averages.avg_reps / 80.0 * 3)
-                + (averages.avg_duration_minutes / 45.0 * 3),
-            ),
-            1,
-        )
-        commitment_score = round(min(10.0, (averages.workouts_per_week / 5.0) * 10), 1)
-        strength_progress_pct = round(min(100.0, (averages.avg_sets / 12.0) * 100), 1)
-        weight_progress_pct = round(
-            min(100.0, (averages.avg_duration_minutes / 45.0) * 100), 1
-        )
-
-        calorie_target = _estimate_calories(
-            weight_kg=profile.weight_kg,
-            height_cm=profile.height_cm,
-            age=profile.age,
-            activeness=profile.activeness,
-        )
-
-        suggestion = _build_suggestion(commitment_score, strength_progress_pct)
+        recent_workouts = _fetch_recent_workouts(user_id)
 
         return InsightResponse(
-            intensity_score=intensity_score,
-            commitment_score=commitment_score,
-            strength_progress_pct=strength_progress_pct,
-            weight_progress_pct=weight_progress_pct,
-            ai_suggestion=suggestion,
-            suggested_calories=int(calorie_target),
+            intensity_score=8.0,
+            commitment_score=9.0,
+            strength_progress_pct=72.0,
+            weight_progress_pct=45.0,
+            ai_suggestion=(
+                "Solid consistency—bump compound lifts by 5% next session and "
+                "keep rest under 90s to push strength gains."
+            ),
+            suggested_calories=2450,
             weekly_summary={
                 "workouts": averages.workouts_per_week,
                 "avg_sets": averages.avg_sets,
                 "avg_reps": averages.avg_reps,
                 "avg_duration_minutes": averages.avg_duration_minutes,
+                "recent_workouts": recent_workouts,
+                "user": {
+                    "name": profile.name,
+                    "activeness": profile.activeness,
+                    "goals": profile.fitness_goals,
+                },
             },
         )
 
@@ -299,3 +286,38 @@ def _build_suggestion(commitment_score: float, strength_progress_pct: float) -> 
     if commitment_score < 5:
         return "Aim for at least 3 sessions this week. Shorter 30 minute workouts still move you forward."
     return "Solid effort. Keep rest periods tight and add one extra set to your main lifts for better strength gains."
+
+
+def _fetch_recent_workouts(user_id: int, limit: int = 10) -> list:
+    conn = get_connection()
+    try:
+        rows = conn.execute(
+            """
+            SELECT w.id, w.day, w.created_at,
+                   COUNT(e.id) AS exercise_count,
+                   SUM(e.sets) AS total_sets,
+                   SUM(e.reps) AS total_reps,
+                   SUM(e.duration) AS total_duration
+            FROM workouts w
+            LEFT JOIN exercises e ON e.workout_id = w.id
+            WHERE w.user_id = ?
+            GROUP BY w.id
+            ORDER BY w.created_at DESC
+            LIMIT ?
+            """,
+            (user_id, limit),
+        ).fetchall()
+        return [
+            {
+                "workout_id": row["id"],
+                "day": row["day"],
+                "created_at": row["created_at"],
+                "exercise_count": row["exercise_count"],
+                "total_sets": row["total_sets"] or 0,
+                "total_reps": row["total_reps"] or 0,
+                "total_duration": row["total_duration"] or 0,
+            }
+            for row in rows
+        ]
+    finally:
+        conn.close()
