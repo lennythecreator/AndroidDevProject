@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundDark"
     android:fillViewport="true">
-    <include layout="@layout/layout_dashboard_content" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,6 +19,7 @@
             android:textSize="20sp"
             android:textColor="@color/colorTextPrimary" />
 
+    <!-- <include layout="@layout/layout_dashboard_content" /> -->
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"

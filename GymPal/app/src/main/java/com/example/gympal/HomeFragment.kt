@@ -23,6 +23,7 @@ class HomeFragment : Fragment() {
     private lateinit var tvAvgDuration: TextView
     private lateinit var tvCurrentGoals: TextView
     private lateinit var btnAiInsights: Button
+    private lateinit var btnLogout: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,6 +77,7 @@ class HomeFragment : Fragment() {
         tvAvgDuration = root.findViewById(R.id.tvAvgDuration)
         tvCurrentGoals = root.findViewById(R.id.tvCurrentGoals)
         btnAiInsights = root.findViewById(R.id.btnAiInsights)
+        btnLogout = root.findViewById(R.id.btnLogout)
 
         val prefs = requireContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
         val name = prefs.getString("name", "user") ?: "user"
@@ -90,6 +92,14 @@ class HomeFragment : Fragment() {
 
         btnAiInsights.setOnClickListener {
             startActivity(Intent(requireContext(), AIInsightsActivity::class.java))
+        }
+
+        btnLogout.setOnClickListener {
+            val authPrefs = requireContext().getSharedPreferences("auth_prefs", Context.MODE_PRIVATE)
+            val userPrefs = requireContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+            authPrefs.edit().clear().apply()
+            userPrefs.edit().clear().apply()
+            showLoggedOut()
         }
     }
 }

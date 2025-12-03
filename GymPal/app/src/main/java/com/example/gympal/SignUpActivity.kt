@@ -59,7 +59,7 @@ class SignUpActivity : AppCompatActivity() {
                 .putBoolean("logged_in", true)
         }
 
-        // Go to onboarding after sign up
+        // Go to onboarding after sign up (still inside single-activity flow later)
         startActivity(Intent(this, OnboardingActivity::class.java))
         finish()
     }

@@ -50,8 +50,8 @@ class LoginActivity : AppCompatActivity() {
                 .putBoolean("logged_in", true)
         }
 
-        // Go to onboarding after login
-        startActivity(Intent(this, OnboardingActivity::class.java))
+        // Go straight to main nav-hosted experience so bottom nav stays visible
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 }
