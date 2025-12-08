@@ -10,12 +10,12 @@
 
 ### Description
 
-GymPal App is a personal mobile coach for students who want structured accountability. It lets users set fitness goals, track workouts and habits, and receive AI-generated check-ins that highlight consistency, celebrate wins, and suggest next steps.
+GymPal App is a personal mobile coach for students who want structured accountability. It lets users set fitness goals, track workouts and habits, and receive AI-generated check-ins that highlight consistency, celebrate wins, and suggest next steps. The app aims to make people more accountable and track fitness progress effectively.
 
 ### App Evaluation
 
 - **Category:** Health & Fitness / Productivity
-- **Mobile:** Phones are always with students, letting the app deliver at-the-moment nudges (push reminders, widget glance), quick photo logging via camera, and motion data capture without extra hardware.
+- **Mobile:** Phones are always with students, letting the app deliver at-the-moment nudges (push reminders, widget glance) and motion data capture without extra hardware.
 - **Story:** “Busy students need a lightweight coach that nudges them toward realistic weekly goals.”
 - **Market:** College students and young professionals who want accountability without a gym membership; can expand to broader wellness market.
 - **Habit:** Daily reminder streaks, weekly AI recaps, and challenge badges to encourage recurrent use.
