@@ -7,7 +7,11 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.edit
+import androidx.lifecycle.lifecycleScope
+import com.example.gympal.network.ApiClient
+import com.example.gympal.network.SessionManager
+import kotlinx.coroutines.launch
+import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
 
@@ -43,15 +47,25 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        // Fake login for now, later call backend here
-        val authPrefs = getSharedPreferences("auth_prefs", MODE_PRIVATE)
-        authPrefs.edit {
-            putString("email", email)
-                .putBoolean("logged_in", true)
-        }
+        btnLogin.isEnabled = false
+        lifecycleScope.launch {
+            try {
+                val payload = JSONObject()
+                    .put("email", email)
+                    .put("password", password)
+                val response = ApiClient.post("/login", payload)
+                val userId = response.optInt("user_id", -1)
+                if (userId <= 0) throw IllegalStateException("No user id")
 
-        // Go to onboarding after login
-        startActivity(Intent(this, OnboardingActivity::class.java))
-        finish()
+                SessionManager.saveAuth(this@LoginActivity, userId, email)
+
+                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                finish()
+            } catch (e: Exception) {
+                Toast.makeText(this@LoginActivity, "Login failed", Toast.LENGTH_SHORT).show()
+            } finally {
+                btnLogin.isEnabled = true
+            }
+        }
     }
 }

@@ -7,7 +7,11 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.edit
+import androidx.lifecycle.lifecycleScope
+import com.example.gympal.network.ApiClient
+import com.example.gympal.network.SessionManager
+import kotlinx.coroutines.launch
+import org.json.JSONObject
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -52,15 +56,26 @@ class SignUpActivity : AppCompatActivity() {
             return
         }
 
-        // Fake sign up for now. Later call backend and store token.
-        val authPrefs = getSharedPreferences("auth_prefs", MODE_PRIVATE)
-        authPrefs.edit {
-            putString("email", email)
-                .putBoolean("logged_in", true)
-        }
+        btnSignUp.isEnabled = false
+        lifecycleScope.launch {
+            try {
+                val payload = JSONObject()
+                    .put("email", email)
+                    .put("password", password)
+                val response = ApiClient.post("/signup", payload)
+                val userId = response.optInt("user_id", -1)
+                if (userId <= 0) throw IllegalStateException("No user id")
 
-        // Go to onboarding after sign up
-        startActivity(Intent(this, OnboardingActivity::class.java))
-        finish()
+                SessionManager.saveAuth(this@SignUpActivity, userId, email)
+
+                // Go to onboarding after sign up
+                startActivity(Intent(this@SignUpActivity, OnboardingActivity::class.java))
+                finish()
+            } catch (e: Exception) {
+                Toast.makeText(this@SignUpActivity, "Sign up failed", Toast.LENGTH_SHORT).show()
+            } finally {
+                btnSignUp.isEnabled = true
+            }
+        }
     }
 }

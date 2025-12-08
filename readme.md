@@ -95,3 +95,11 @@ Profile & Settings
 ### [BONUS] Digital Wireframes & Mockups
 
 ### [BONUS] Interactive Prototype
+
+## Workout Reminder Toasts
+
+- Open the new **Reminders** tab in the bottom navigation to choose a daily workout reminder time.
+- Tap **Schedule daily reminder** to persist a repeating alarm via `AlarmManager`; the app will fire a toast even if the UI is closed (phone must be on and the app opened at least once since reboot).
+- Tap **Cancel reminder** to stop the pending alarm; you can reschedule at any time with a different hour/minute.
+- Reminders currently surface as toast nudges without notifications, per the MVP focus on lightweight prompts.
+- The bottom navigation now uses custom icons, and every screen (Home, Insights, Reminders, Profile) shares the same dark palette from `values/colors.xml` so the experience feels cohesive.
