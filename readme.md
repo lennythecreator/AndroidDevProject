@@ -92,14 +92,42 @@ Profile & Settings
 
 <br>
 
-### [BONUS] Digital Wireframes & Mockups
 
-### [BONUS] Interactive Prototype
 
-## Workout Reminder Toasts
 
-- Open the new **Reminders** tab in the bottom navigation to choose a daily workout reminder time.
-- Tap **Schedule daily reminder** to persist a repeating alarm via `AlarmManager`; the app will fire a toast even if the UI is closed (phone must be on and the app opened at least once since reboot).
-- Tap **Cancel reminder** to stop the pending alarm; you can reschedule at any time with a different hour/minute.
-- Reminders currently surface as toast nudges without notifications, per the MVP focus on lightweight prompts.
-- The bottom navigation now uses custom icons, and every screen (Home, Insights, Reminders, Profile) shares the same dark palette from `values/colors.xml` so the experience feels cohesive.
+---
+
+# Milestone 2 - Build Sprint 1 (Unit 8)
+
+## GitHub Project board
+
+<img src="./TaskBoard.png" width=600 alt="Milestone 2 Project Board">
+
+## Issue cards
+
+<img src="./issues.png" width=600 alt="Current Sprint Issues">
+
+
+<img src="./Milestones.png" width=600 alt="Next Sprint Issues">
+
+## Issues worked on this sprint
+
+- **Backend API Development**: Implemented FastAPI backend server with SQLite database for user management, workout tracking, and AI insights 
+
+- **User Authentication and Onboarding Integration**: Built signup and login functionality with session management using SharedPreferences.Connected onboarding flow to backend API to persist user profile data (name, age, weight, height, activeness level, fitness goals)
+
+- **Workout Logging**: Implemented workout form to save exercises, sets, reps, and duration of workouts
+
+- **Dashboard Data Integration**: Connected home dashboard to fetch and display real-time user profile, workout averages, and current goals from backend
+
+- **AI Insights Screen**: Built AI insights screen with performance metrics and AI-generated suggestions
+
+- **AI Chat Feature**: Implemented interactive chat functionality in AI Insights screen allowing users to have contextual conversations with AI about their fitness data, with chat history persisted in database
+
+- **UI Improvements**: Added a floating button in insights screen that allows the user to chat with the AI.
+
+[Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
+
+<img src="./images/milestone2_build_progress.gif" width=600 alt="Milestone 2 Build Progress">
+
+<br>

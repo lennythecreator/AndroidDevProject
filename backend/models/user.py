@@ -68,3 +68,18 @@ class ProfileResponse(BaseModel):
     activeness: str
     fitness_goals: str
     onboarding_complete: bool
+
+
+class ChatMessageRequest(BaseModel):
+    message: str
+
+
+class ChatMessageResponse(BaseModel):
+    id: int
+    role: str
+    content: str
+    created_at: str
+
+
+class ChatHistoryResponse(BaseModel):
+    messages: List[ChatMessageResponse]

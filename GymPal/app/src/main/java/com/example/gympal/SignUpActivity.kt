@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.gympal.network.ApiClient
+import com.example.gympal.network.ApiException
+import com.example.gympal.network.NetworkException
 import com.example.gympal.network.SessionManager
 import kotlinx.coroutines.launch
 import org.json.JSONObject
@@ -71,8 +73,54 @@ class SignUpActivity : AppCompatActivity() {
                 // Go to onboarding after sign up
                 startActivity(Intent(this@SignUpActivity, OnboardingActivity::class.java))
                 finish()
+            } catch (e: ApiException) {
+                // Handle API errors (4xx, 5xx responses)
+                val errorMessage = when {
+                    e.statusCode == 400 && e.message?.contains("already registered", ignoreCase = true) == true -> {
+                        "This email is already registered. Please use a different email or try logging in."
+                    }
+                    e.statusCode == 400 -> {
+                        "Invalid request: ${e.message ?: "Bad request"}"
+                    }
+                    e.statusCode == 422 -> {
+                        "Invalid email or password format. Please check your input."
+                    }
+                    e.statusCode in 500..599 -> {
+                        "Server error. Please try again later."
+                    }
+                    else -> {
+                        "Sign up failed: ${e.message ?: "Unknown error"}"
+                    }
+                }
+                Toast.makeText(this@SignUpActivity, errorMessage, Toast.LENGTH_LONG).show()
+            } catch (e: NetworkException) {
+                // Handle network errors
+                val errorMessage = when {
+                    e.message?.contains("Unable to reach server", ignoreCase = true) == true -> {
+                        "Unable to connect to server. Please check your internet connection."
+                    }
+                    e.message?.contains("timeout", ignoreCase = true) == true -> {
+                        "Request timed out. Please check your connection and try again."
+                    }
+                    else -> {
+                        "Network error: ${e.message ?: "Unable to connect"}"
+                    }
+                }
+                Toast.makeText(this@SignUpActivity, errorMessage, Toast.LENGTH_LONG).show()
+            } catch (e: IllegalStateException) {
+                // Handle unexpected response format
+                Toast.makeText(
+                    this@SignUpActivity,
+                    "Unexpected error occurred. Please try again.",
+                    Toast.LENGTH_LONG
+                ).show()
             } catch (e: Exception) {
-                Toast.makeText(this@SignUpActivity, "Sign up failed", Toast.LENGTH_SHORT).show()
+                // Catch-all for any other exceptions
+                Toast.makeText(
+                    this@SignUpActivity,
+                    "An error occurred: ${e.message ?: "Please try again"}",
+                    Toast.LENGTH_LONG
+                ).show()
             } finally {
                 btnSignUp.isEnabled = true
             }
