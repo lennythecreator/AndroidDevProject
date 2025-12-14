@@ -170,6 +170,8 @@ Profile & Settings
 ## App Demo Video
 
 **DEMO**
+
+
 <img src="./DEMO-GIF.gif" width=600 alt="Milestone 3 Project Board">
 
 <!-- <iframe width="600" height="400" src="https://submissions.us-east-1.linodeobjects.com/and102/JDmGzhWl.gif" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
