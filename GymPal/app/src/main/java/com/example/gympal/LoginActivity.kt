@@ -1,13 +1,22 @@
 package com.example.gympal
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.edit
+import androidx.lifecycle.lifecycleScope
+import com.example.gympal.network.ApiClient
+import com.example.gympal.network.ApiException
+import com.example.gympal.network.NetworkException
+import com.example.gympal.network.SessionManager
+import kotlinx.coroutines.launch
+import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
 
@@ -15,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var etPassword: EditText
     private lateinit var btnLogin: Button
     private lateinit var tvGoToSignUp: TextView
+    private var isLoginInProgress = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +45,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun handleLogin() {
+        // Prevent multiple simultaneous login attempts
+        if (isLoginInProgress) {
+            return
+        }
+
         val email = etEmail.text.toString().trim()
         val password = etPassword.text.toString().trim()
 
@@ -43,15 +58,66 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        // Fake login for now, later call backend here
-        val authPrefs = getSharedPreferences("auth_prefs", MODE_PRIVATE)
-        authPrefs.edit {
-            putString("email", email)
-                .putBoolean("logged_in", true)
+        // Check network connectivity before attempting login
+        if (!isNetworkAvailable()) {
+            Toast.makeText(
+                this,
+                "No internet connection. Please check your network settings.",
+                Toast.LENGTH_LONG
+            ).show()
+            return
         }
 
-        // Go straight to main nav-hosted experience so bottom nav stays visible
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
+        isLoginInProgress = true
+        btnLogin.isEnabled = false
+        
+        lifecycleScope.launch {
+            try {
+                val payload = JSONObject()
+                    .put("email", email)
+                    .put("password", password)
+                val response = ApiClient.post("/login", payload)
+                val userId = response.optInt("user_id", -1)
+                if (userId <= 0) {
+                    throw IllegalStateException("Invalid response: No user id received")
+                }
+
+                SessionManager.saveAuth(this@LoginActivity, userId, email)
+
+                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                finish()
+            } catch (e: ApiException) {
+                // Handle API errors (401, 404, etc.) with specific messages
+                val errorMessage = when (e.statusCode) {
+                    401 -> "Invalid email or password"
+                    404 -> "User not found"
+                    400 -> e.message ?: "Invalid request"
+                    else -> "Login failed: ${e.message}"
+                }
+                Toast.makeText(this@LoginActivity, errorMessage, Toast.LENGTH_LONG).show()
+            } catch (e: NetworkException) {
+                // Handle network errors with user-friendly messages
+                Toast.makeText(this@LoginActivity, e.message ?: "Network error occurred", Toast.LENGTH_LONG).show()
+            } catch (e: IllegalStateException) {
+                Toast.makeText(this@LoginActivity, e.message ?: "Login failed", Toast.LENGTH_LONG).show()
+            } catch (e: Exception) {
+                Toast.makeText(
+                    this@LoginActivity,
+                    "Login failed: ${e.message ?: "Unknown error"}",
+                    Toast.LENGTH_LONG
+                ).show()
+            } finally {
+                isLoginInProgress = false
+                btnLogin.isEnabled = true
+            }
+        }
+    }
+
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork ?: return false
+        val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+        return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
+               capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
     }
 }

@@ -63,11 +63,11 @@
                         android:layout_marginBottom="12dp"
                         android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="4dp"
-                            android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="0dp"
@@ -78,17 +78,19 @@
                                 android:textColor="@color/colorTextSecondary" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="8/10"
-                                android:textAppearance="?attr/textAppearanceLabelLarge"
-                                android:textColor="@color/colorTextPrimary" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tvIntensityScore"
+                            android:text="0/10"
+                            android:textAppearance="?attr/textAppearanceLabelLarge"
+                            android:textColor="@color/colorTextPrimary" />
                         </LinearLayout>
 
                         <com.google.android.material.progressindicator.LinearProgressIndicator
+                            android:id="@+id/progressIntensity"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:progress="80"
+                            android:progress="0"
                             app:indicatorColor="@color/colorAccent"
                             app:trackColor="@color/colorPlaceholderText"
                             app:trackCornerRadius="4dp" />
@@ -101,11 +103,11 @@
                         android:layout_marginBottom="12dp"
                         android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="4dp"
-                            android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="0dp"
@@ -116,17 +118,19 @@
                                 android:textColor="@color/colorTextSecondary" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="9/10"
-                                android:textAppearance="?attr/textAppearanceLabelLarge"
-                                android:textColor="@color/colorTextPrimary" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tvCommitmentScore"
+                            android:text="0/10"
+                            android:textAppearance="?attr/textAppearanceLabelLarge"
+                            android:textColor="@color/colorTextPrimary" />
                         </LinearLayout>
 
                         <com.google.android.material.progressindicator.LinearProgressIndicator
+                            android:id="@+id/progressCommitment"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:progress="90"
+                            android:progress="0"
                             app:indicatorColor="@color/colorAccent"
                             app:trackColor="@color/colorPlaceholderText"
                             app:trackCornerRadius="4dp" />
@@ -152,9 +156,10 @@
                             android:layout_height="wrap_content">
 
                             <com.google.android.material.progressindicator.CircularProgressIndicator
+                                android:id="@+id/progressStrength"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:progress="70"
+                                android:progress="0"
                                 app:indicatorColor="@color/colorAccent"
                                 app:indicatorSize="120dp"
                                 app:trackColor="@color/colorPlaceholderText"
@@ -162,10 +167,11 @@
                                 app:trackThickness="12dp" />
 
                             <TextView
+                                android:id="@+id/tvStrengthPct"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="50%"
+                                android:text="0%"
                                 android:textAppearance="?attr/textAppearanceHeadlineMedium"
                                 android:textColor="@color/colorTextPrimary" />
                         </FrameLayout>
@@ -189,9 +195,10 @@
                             android:layout_height="wrap_content">
 
                             <com.google.android.material.progressindicator.CircularProgressIndicator
+                                android:id="@+id/progressWeight"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:progress="40"
+                                android:progress="0"
                                 app:indicatorColor="@color/colorAccent"
                                 app:indicatorSize="120dp"
                                 app:trackColor="@color/colorPlaceholderText"
@@ -199,10 +206,11 @@
                                 app:trackThickness="12dp" />
 
                             <TextView
+                                android:id="@+id/tvWeightPct"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="40%"
+                                android:text="0%"
                                 android:textAppearance="?attr/textAppearanceHeadlineMedium"
                                 android:textColor="@color/colorTextPrimary" />
                         </FrameLayout>
@@ -252,6 +260,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tvSuggestion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Great consistency this week! To improve your strength progress, try increasing the weight on your compound lifts by 5% next session."
@@ -288,9 +297,10 @@
                         android:textColor="@color/colorTextPrimary" />
 
                     <TextView
+                        android:id="@+id/tvSuggestedCalories"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="2,450"
+                        android:text="0"
                         android:textAlignment="center"
                         android:textAppearance="?attr/textAppearanceDisplayLarge"
                         android:textColor="@color/colorAccent"

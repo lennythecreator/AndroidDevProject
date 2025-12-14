@@ -6,8 +6,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.gympal.model.UserProfile
 import androidx.core.content.edit
+import androidx.lifecycle.lifecycleScope
+import com.example.gympal.model.UserProfile
+import com.example.gympal.network.ApiClient
+import com.example.gympal.network.SessionManager
+import kotlinx.coroutines.launch
+import org.json.JSONArray
+import org.json.JSONObject
 
 class OnboardingActivity : AppCompatActivity() {
 
@@ -58,12 +64,43 @@ class OnboardingActivity : AppCompatActivity() {
             fitnessGoals = fitnessGoals
         )
 
-        saveUserProfile(profile)
+        val userId = SessionManager.userId(this)
+        if (userId <= 0) {
+            Toast.makeText(this, "Please log in again", Toast.LENGTH_SHORT).show()
+            return
+        }
 
-        // After onboarding, go to the main nav-hosted experience (keeps bottom nav visible)
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
+        btnContinue.isEnabled = false
+        lifecycleScope.launch {
+            try {
+                val goalsArray = JSONArray()
+                if (fitnessGoals.isNotBlank()) {
+                    fitnessGoals.split(",").map { it.trim() }.filter { it.isNotEmpty() }
+                        .forEach { goalsArray.put(it) }
+                }
+
+                val payload = JSONObject()
+                    .put("user_id", userId)
+                    .put("name", name)
+                    .put("age", age)
+                    .put("weight_kg", weight)
+                    .put("height_cm", height)
+                    .put("activeness", activeness)
+                    .put("fitness_goals", fitnessGoals)
+                    .put("goals", goalsArray)
+
+                ApiClient.post("/onboarding", payload)
+                saveUserProfile(profile)
+
+                val intent = Intent(this@OnboardingActivity, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            } catch (e: Exception) {
+                Toast.makeText(this@OnboardingActivity, "Failed to save onboarding", Toast.LENGTH_SHORT).show()
+            } finally {
+                btnContinue.isEnabled = true
+            }
+        }
     }
 
     private fun saveUserProfile(profile: UserProfile) {

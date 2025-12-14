@@ -11,6 +11,7 @@ from models import (
     ProfileResponse,
     WorkoutRequest,
 )
+from ai import InsightsLLM
 
 
 class User_Controller:
@@ -187,22 +188,31 @@ class User_Controller:
 
     @staticmethod
     async def get_insights(user_id: int) -> InsightResponse:
-        # Pull real user + weekly averages from DB, but return a mocked insight payload.
         profile = await User_Controller.get_profile(user_id)
         averages = await User_Controller.get_goal_averages(user_id)
         recent_workouts = _fetch_recent_workouts(user_id)
 
-        return InsightResponse(
-            intensity_score=8.0,
-            commitment_score=9.0,
-            strength_progress_pct=72.0,
-            weight_progress_pct=45.0,
-            ai_suggestion=(
-                "Solid consistency—bump compound lifts by 5% next session and "
-                "keep rest under 90s to push strength gains."
-            ),
-            suggested_calories=2450,
-            weekly_summary={
+        llm_payload = {}
+        try:
+            llm = InsightsLLM()
+            llm_payload = llm.generate_insights(
+                profile=profile.model_dump(),
+                workouts={
+                    "averages": averages.model_dump(),
+                    "recent_workouts": recent_workouts,
+                },
+            )
+        except Exception:
+            # If AI generation fails (no key, network issues), fall back to defaults.
+            llm_payload = {}
+
+        # Fallback to sensible defaults if LLM response is empty/malformed
+        def pick(key, default):
+            return llm_payload.get(key, default) if isinstance(llm_payload, dict) else default
+
+        weekly_summary = pick(
+            "weekly_summary",
+            {
                 "workouts": averages.workouts_per_week,
                 "avg_sets": averages.avg_sets,
                 "avg_reps": averages.avg_reps,
@@ -214,6 +224,16 @@ class User_Controller:
                     "goals": profile.fitness_goals,
                 },
             },
+        )
+
+        return InsightResponse(
+            intensity_score=float(pick("intensity_score", 0.0)),
+            commitment_score=float(pick("commitment_score", 0.0)),
+            strength_progress_pct=float(pick("strength_progress_pct", 0.0)),
+            weight_progress_pct=float(pick("weight_progress_pct", 0.0)),
+            ai_suggestion=str(pick("ai_suggestion", "No insight available")),
+            suggested_calories=int(pick("suggested_calories", 0)),
+            weekly_summary=weekly_summary,
         )
 
     @staticmethod
