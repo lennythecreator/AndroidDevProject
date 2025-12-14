@@ -131,3 +131,50 @@ Profile & Settings
 <img src="./images/milestone2_build_progress.gif" width=600 alt="Milestone 2 Build Progress">
 
 <br>
+
+---
+
+# Milestone 3 - Build Sprint 2 (Unit 9)
+
+## GitHub Project board
+
+[Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.]
+
+<img src="./images/milestone3_project_board.png" width=600 alt="Milestone 3 Project Board">
+
+## Completed user stories
+
+- **User Authentication Flow**: As a new user, I can sign up with my email and password, so that I can create an account and access personalized fitness tracking.
+
+- **Onboarding Experience**: As a new user, I can complete an onboarding flow where I provide my name, age, weight, height, activity level, and fitness goals, so that the app can personalize my experience and generate relevant insights.
+
+- **Workout Logging**: As a user, I can log my workouts by adding exercises with sets, reps, and duration, so that I can track my progress over time.
+
+- **Dashboard Overview**: As a user, I can view my dashboard with personalized greeting, workout averages (workouts per week, average sets, reps, duration), and current fitness goals, so that I can quickly see my progress at a glance.
+
+- **AI Insights Display**: As a user, I can view AI-generated insights including intensity score, commitment score, strength progress, weight progress, AI suggestions, and suggested daily calories, so that I can understand my performance and get actionable recommendations.
+
+- **AI Chat Feature**: As a user, I can chat with the AI about my fitness data through an interactive chat interface, so that I can ask questions and get personalized advice based on my workout history and current insights.
+
+- **Profile Management**: As a user, I can view my profile information including name, age, weight, height, activity level, goals, and consistency score, so that I can review my account details.
+
+- **Session Management**: As a user, I can log in and remain logged in across app sessions, so that I don't have to re-authenticate every time I open the app.
+
+- **Error Handling**: As a user, I receive clear and helpful error messages when network requests fail or when there are validation issues, so that I understand what went wrong and how to fix it.
+
+## Pending user stories / Cut features
+
+- **Progress Photo Upload**: The workout form includes a placeholder for photo upload, but this feature was not implemented in this sprint. This was cut to focus on core functionality.
+
+- **Push Notifications**: While the reminders tab exists, push notifications for scheduled workouts and weekly summaries were not fully implemented. The reminder system uses local toasts only.
+
+- **Profile Viewing**: Users can view their profile directly from the app. 
+
+## App Demo Video
+
+**DEMO**
+<img src="https://submissions.us-east-1.linodeobjects.com/and102/JDmGzhWl.gif" width=600 alt="Milestone 3 Project Board">
+
+<!-- <iframe width="600" height="400" src="https://submissions.us-east-1.linodeobjects.com/and102/JDmGzhWl.gif" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+<br>
