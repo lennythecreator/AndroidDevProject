@@ -160,7 +160,6 @@ Profile & Settings
 
 - [x] **Session Management**: As a user, I can log in and remain logged in across app sessions, so that I don't have to re-authenticate every time I open the app.
 
-- [x] **Error Handling**: As a user, I receive clear and helpful error messages when network requests fail or when there are validation issues, so that I understand what went wrong and how to fix it.
 
 ## Pending user stories / Cut features
 
