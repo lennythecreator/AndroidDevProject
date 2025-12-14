@@ -13,8 +13,11 @@ import java.net.UnknownHostException
 import java.util.concurrent.TimeUnit
 
 object ApiClient {
-    // Point to the exposed backend tunnel; update if the tunnel URL changes.
-    private const val BASE_URL = "https://kd35z1pp-8000.usw3.devtunnels.ms"
+    // Backend URL configuration:
+    // - For Android Emulator: use http://10.0.2.2:8000
+    // - For Physical Device: use your computer's IP (e.g., http://192.168.1.100:8000)
+    // - For Dev Tunnel: use your tunnel URL (e.g., https://kd35z1pp-8000.usw3.devtunnels.ms)
+    private const val BASE_URL = "http://10.0.2.2:8000"
     
     // Configure OkHttpClient with proper timeouts and retry logic
     private val client = OkHttpClient.Builder()
@@ -89,9 +92,21 @@ object ApiClient {
                 // Try to extract error message from response body
                 val errorMessage = try {
                     val errorJson = JSONObject(body)
-                    errorJson.optString("detail", "Unknown error")
+                    val detail = errorJson.optString("detail", "Unknown error")
+                    // Include URL in 404 errors for debugging
+                    if (response.code == 404) {
+                        "Endpoint not found: ${request.url} - $detail"
+                    } else {
+                        detail
+                    }
                 } catch (_: Exception) {
-                    "HTTP ${response.code}: ${response.message}"
+                    val baseMessage = "HTTP ${response.code}: ${response.message}"
+                    // Include URL in 404 errors for debugging
+                    if (response.code == 404) {
+                        "$baseMessage (URL: ${request.url})"
+                    } else {
+                        baseMessage
+                    }
                 }
                 throw ApiException(response.code, errorMessage)
             }

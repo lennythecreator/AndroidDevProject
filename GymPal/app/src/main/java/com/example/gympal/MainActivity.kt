@@ -18,8 +18,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
 
         val authPrefs = getSharedPreferences("auth_prefs", MODE_PRIVATE)
-//        val loggedIn = authPrefs.getBoolean("logged_in", false)
-        val loggedIn = false
+        val loggedIn = authPrefs.getBoolean("logged_in", false)
 
         if (!loggedIn) {
             // Load login/signup screen

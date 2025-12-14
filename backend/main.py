@@ -1,11 +1,27 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from controllers.auth import Auth_Controller
 from controllers.user import User_Controller
 from db import init_db
-from models import LoginRequest, OnboardingRequest, SignupRequest, WorkoutRequest
+from models import (
+    ChatMessageRequest,
+    LoginRequest,
+    OnboardingRequest,
+    SignupRequest,
+    WorkoutRequest,
+)
 
 app = FastAPI()
+
+# Add CORS middleware to allow requests from Android app
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, replace with specific origins
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.on_event("startup")
@@ -56,3 +72,13 @@ async def user_current_goals(user_id: int):
 @app.get("/users/{user_id}/insights")
 async def user_insights(user_id: int):
     return await User_Controller.get_insights(user_id)
+
+
+@app.get("/users/{user_id}/insights/chat")
+async def get_chat_history(user_id: int):
+    return await User_Controller.get_chat_history(user_id)
+
+
+@app.post("/users/{user_id}/insights/chat")
+async def send_chat_message(user_id: int, chat_request: ChatMessageRequest):
+    return await User_Controller.send_chat_message(user_id, chat_request.message)

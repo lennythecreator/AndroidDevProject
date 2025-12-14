@@ -92,14 +92,86 @@ Profile & Settings
 
 <br>
 
-### [BONUS] Digital Wireframes & Mockups
 
-### [BONUS] Interactive Prototype
 
-## Workout Reminder Toasts
 
-- Open the new **Reminders** tab in the bottom navigation to choose a daily workout reminder time.
-- Tap **Schedule daily reminder** to persist a repeating alarm via `AlarmManager`; the app will fire a toast even if the UI is closed (phone must be on and the app opened at least once since reboot).
-- Tap **Cancel reminder** to stop the pending alarm; you can reschedule at any time with a different hour/minute.
-- Reminders currently surface as toast nudges without notifications, per the MVP focus on lightweight prompts.
-- The bottom navigation now uses custom icons, and every screen (Home, Insights, Reminders, Profile) shares the same dark palette from `values/colors.xml` so the experience feels cohesive.
+---
+
+# Milestone 2 - Build Sprint 1 (Unit 8)
+
+## GitHub Project board
+
+<img src="./TaskBoard.png" width=600 alt="Milestone 2 Project Board">
+
+## Issue cards
+
+<img src="./issues.png" width=600 alt="Current Sprint Issues">
+
+
+<img src="./Milestones.png" width=600 alt="Next Sprint Issues">
+
+## Issues worked on this sprint
+
+- **Backend API Development**: Implemented FastAPI backend server with SQLite database for user management, workout tracking, and AI insights 
+
+- **User Authentication and Onboarding Integration**: Built signup and login functionality with session management using SharedPreferences.Connected onboarding flow to backend API to persist user profile data (name, age, weight, height, activeness level, fitness goals)
+
+- **Workout Logging**: Implemented workout form to save exercises, sets, reps, and duration of workouts
+
+- **Dashboard Data Integration**: Connected home dashboard to fetch and display real-time user profile, workout averages, and current goals from backend
+
+- **AI Insights Screen**: Built AI insights screen with performance metrics and AI-generated suggestions
+
+- **AI Chat Feature**: Implemented interactive chat functionality in AI Insights screen allowing users to have contextual conversations with AI about their fitness data, with chat history persisted in database
+
+- **UI Improvements**: Added a floating button in insights screen that allows the user to chat with the AI.
+
+[Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
+
+<img src="./images/milestone2_build_progress.gif" width=600 alt="Milestone 2 Build Progress">
+
+<br>
+
+---
+
+# Milestone 3 - Build Sprint 2 (Unit 9)
+
+## GitHub Project board
+
+[Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.]
+
+<img src="./images/milestone3_project_board.png" width=600 alt="Milestone 3 Project Board">
+
+## Completed user stories
+
+- [x] **User Authentication Flow**: As a new user, I can sign up with my email and password, so that I can create an account and access personalized fitness tracking.
+
+- [x] **Onboarding Experience**: As a new user, I can complete an onboarding flow where I provide my name, age, weight, height, activity level, and fitness goals, so that the app can personalize my experience and generate relevant insights.
+
+- [x] **Workout Logging**: As a user, I can log my workouts by adding exercises with sets, reps, and duration, so that I can track my progress over time.
+
+- [x] **Dashboard Overview**: As a user, I can view my dashboard with personalized greeting, workout averages (workouts per week, average sets, reps, duration), and current fitness goals, so that I can quickly see my progress at a glance.
+
+- [x] **AI Insights Display**: As a user, I can view AI-generated insights including intensity score, commitment score, strength progress, weight progress, AI suggestions, and suggested daily calories, so that I can understand my performance and get actionable recommendations.
+
+- [x] **AI Chat Feature**: As a user, I can chat with the AI about my fitness data through an interactive chat interface, so that I can ask questions and get personalized advice based on my workout history and current insights.
+
+- [x] **Profile Management**: As a user, I can view my profile information including name, age, weight, height, activity level, goals, and consistency score, so that I can review my account details.
+
+- [x] **Session Management**: As a user, I can log in and remain logged in across app sessions, so that I don't have to re-authenticate every time I open the app.
+
+
+## Pending user stories / Cut features
+
+- [x] **AI Chat**: User can chat with the AI and the AI has full context of their data. (Commpleted late)
+
+- [ ] **Workout History View**: While workouts are saved, there is no dedicated screen to view past workout history. This could be added in a future sprint. 
+
+## App Demo Video
+
+**DEMO**
+<img src="https://submissions.us-east-1.linodeobjects.com/and102/JDmGzhWl.gif" width=600 alt="Milestone 3 Project Board">
+
+<!-- <iframe width="600" height="400" src="https://submissions.us-east-1.linodeobjects.com/and102/JDmGzhWl.gif" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+<br>

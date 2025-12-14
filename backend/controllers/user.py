@@ -5,6 +5,9 @@ from fastapi import HTTPException
 from db import get_connection
 from models import (
     AveragesResponse,
+    ChatHistoryResponse,
+    ChatMessageRequest,
+    ChatMessageResponse,
     GoalsResponse,
     InsightResponse,
     OnboardingRequest,
@@ -266,6 +269,100 @@ class User_Controller:
             fitness_goals=row["fitness_goals"],
             onboarding_complete=bool(row["onboarding_complete"]),
         )
+
+    @staticmethod
+    async def get_chat_history(user_id: int) -> ChatHistoryResponse:
+        conn = get_connection()
+        try:
+            rows = conn.execute(
+                """
+                SELECT id, role, content, created_at
+                FROM chat_messages
+                WHERE user_id = ?
+                ORDER BY created_at ASC
+                """,
+                (user_id,),
+            ).fetchall()
+            messages = [
+                ChatMessageResponse(
+                    id=row["id"],
+                    role=row["role"],
+                    content=row["content"],
+                    created_at=row["created_at"],
+                )
+                for row in rows
+            ]
+            return ChatHistoryResponse(messages=messages)
+        finally:
+            conn.close()
+
+    @staticmethod
+    async def send_chat_message(user_id: int, message: str) -> ChatHistoryResponse:
+        conn = get_connection()
+        try:
+            # Verify user exists
+            user_row = conn.execute(
+                "SELECT id FROM users WHERE id = ?", (user_id,)
+            ).fetchone()
+            if not user_row:
+                raise HTTPException(status_code=404, detail="User not found")
+
+            # Save user message
+            with conn:
+                cursor = conn.execute(
+                    """
+                    INSERT INTO chat_messages (user_id, role, content)
+                    VALUES (?, 'user', ?)
+                    """,
+                    (user_id, message),
+                )
+                user_message_id = cursor.lastrowid
+
+            # Fetch user context for AI
+            profile = await User_Controller.get_profile(user_id)
+            averages = await User_Controller.get_goal_averages(user_id)
+            recent_workouts = _fetch_recent_workouts(user_id)
+            insights = await User_Controller.get_insights(user_id)
+            chat_history = await User_Controller.get_chat_history(user_id)
+
+            # Convert chat history to format expected by AI
+            history_list = [
+                {"role": msg.role, "content": msg.content}
+                for msg in chat_history.messages
+            ]
+
+            # Get AI response
+            ai_response = ""
+            try:
+                llm = InsightsLLM()
+                ai_response = llm.chat_with_context(
+                    profile=profile.model_dump(),
+                    workouts={
+                        "averages": averages.model_dump(),
+                        "recent_workouts": recent_workouts,
+                    },
+                    insights=insights.model_dump(),
+                    chat_history=history_list,
+                )
+            except Exception:
+                ai_response = (
+                    "I'm having trouble connecting right now. Please try again later."
+                )
+
+            # Save AI response
+            with conn:
+                conn.execute(
+                    """
+                    INSERT INTO chat_messages (user_id, role, content)
+                    VALUES (?, 'assistant', ?)
+                    """,
+                    (user_id, ai_response),
+                )
+
+            # Return updated chat history
+            return await User_Controller.get_chat_history(user_id)
+        finally:
+            conn.close()
 
 
 def _split_goals(raw_goals: str) -> List[str]:

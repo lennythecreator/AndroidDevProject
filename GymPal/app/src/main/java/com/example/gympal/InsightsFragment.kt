@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.gympal.network.ApiClient
 import com.example.gympal.network.SessionManager
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import kotlinx.coroutines.launch
@@ -47,6 +48,11 @@ class InsightsFragment : Fragment() {
         tvWeightPct = view.findViewById(R.id.tvWeightPct)
         tvSuggestion = view.findViewById(R.id.tvSuggestion)
         tvCalories = view.findViewById(R.id.tvSuggestedCalories)
+
+        val fabChat = view.findViewById<FloatingActionButton>(R.id.fabChat)
+        fabChat.setOnClickListener {
+            ChatBottomSheet.show(parentFragmentManager)
+        }
 
         fetchInsights()
     }

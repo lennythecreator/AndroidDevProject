@@ -1,7 +1,7 @@
 import os
 import json
 import re
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 from dotenv import load_dotenv
 from groq import Groq
@@ -52,6 +52,51 @@ class InsightsLLM:
         content = completion.choices[0].message.content or "{}"
         # We expect valid JSON per instructions; best-effort parse
         return _parse_json_content(content)
+
+    def chat_with_context(
+        self,
+        profile: Dict[str, Any],
+        workouts: Dict[str, Any],
+        insights: Dict[str, Any],
+        chat_history: List[Dict[str, str]],
+    ) -> str:
+        """
+        Generate an AI response in a conversational context with full user data.
+        
+        Args:
+            profile: User profile data
+            workouts: Workout data including averages and recent workouts
+            insights: Current insights data
+            chat_history: List of previous messages in format [{"role": "user|assistant", "content": "..."}]
+        
+        Returns:
+            AI response as a string
+        """
+        system_prompt = (
+            "You are a helpful fitness coach assistant. You have access to the user's complete "
+            "fitness profile, workout history, and current insights. Answer their questions about "
+            "their fitness journey, provide personalized advice, and help them understand their "
+            "progress. Be conversational, supportive, and actionable.\n\n"
+            f"User Profile: {profile}\n"
+            f"Workout Data: {workouts}\n"
+            f"Current Insights: {insights}\n\n"
+            "Use this context to provide relevant, personalized responses."
+        )
+
+        messages = [{"role": "system", "content": system_prompt}]
+        
+        # Add chat history
+        for msg in chat_history:
+            messages.append({"role": msg["role"], "content": msg["content"]})
+
+        completion = self.client.chat.completions.create(
+            messages=messages,
+            model="llama-3.3-70b-versatile",
+            temperature=0.7,
+            max_tokens=500,
+        )
+        
+        return completion.choices[0].message.content or "I'm sorry, I couldn't generate a response."
 
 
 def _parse_json_content(content: str) -> Dict[str, Any]:
